@@ -1,0 +1,66 @@
+<h1>Task Manager</h1>
+<form class="well" [formGroup]=rForm (ngSubmit)="addTask(rForm.value)" class="row">
+  <div class="form-group col-md-3">
+    <label for="id">ID:</label>
+    <input type="text" formControlName="id" class="form-control">
+  </div>
+  <div class="form-group col-md-3">
+    <label for="id">Description:</label>
+    <textarea formControlName="description" class="form-control"></textarea>
+  </div>
+  <div class="form-group col-md-3">
+    <label for="id">Created At:</label>
+    <input type="text" formControlName="createdAt" class="form-control">
+  </div>
+  <div class="form-group col-md-3">
+    <label for="id">Updated At:</label>
+    <input type="text" formControlName="updatedAt" class="form-control">
+  </div>
+  <div class="form-group col-md-3">
+    <label for="id">Due Date:</label>
+    <input type="text" formControlName="dueDate" class="form-control">
+  </div>
+  <div class="form-group col-md-3">
+    <label for="id">Resolved At:</label>
+    <input type="text" formControlName="resolvedAt" class="form-control">
+  </div>
+  <div class="form-group col-md-3">
+    <label for="id">Priority:</label>
+    <input type="text" formControlName="priority" class="form-control">
+  </div>
+  <div class="form-group col-md-3">
+    <label for="id">Status:</label>
+    <input type="text" formControlName="status" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+<input type="text" value="" (click)="deleteTask($event.target.value)">
+
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>title</th>
+        <th>description</th>
+        <th>createdAt</th>
+        <th>updatedAt</th>
+        <th>dueDate</th>
+        <th>resolvedAt</th>
+        <th>priority</th>
+        <th>status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.id }}</td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.createdAt }}</td>
+        <td>{{ task.updatedAt }}</td>
+        <td>{{ task.dueDate }}</td>
+        <td>{{ task.resolvedAt }}</td>
+        <td>{{ task.priority }}</td>
+        <td>{{ task.status }}</td>
+      </tr>      
+    </tbody>
+  </table>
