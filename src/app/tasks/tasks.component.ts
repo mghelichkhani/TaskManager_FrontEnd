@@ -65,7 +65,6 @@ export class TasksComponent implements OnInit {
   }
 
   deleteTask(id) {
-    console.log(id);
     this.dataService.deleteTask(id);
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -14,9 +14,16 @@ export class DataService {
   }
 
   deleteTask(id) {
-    var requestUrl = 'http://localhost:3000/api/task/';
-    return this.http.delete(requestUrl, id)
-                    .map(res => res.json());
+    let options = new RequestOptions({
+      headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }) 
+    });
+    
+    var requestUrl = 'http://localhost:3000/api/v1.0/task/'+id;
+
+    this.http.delete(requestUrl,options)
+                    .subscribe(res => res.json());
+    // How to wait for the server to remove the task and then get an update from the server?
+    this.getTasks();
   }
 
 }
