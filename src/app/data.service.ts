@@ -13,6 +13,16 @@ export class DataService {
                     .map(res => res.json());
   }
 
+  addTask(task) {
+    let options = new RequestOptions({
+      headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }) 
+    });
+
+    var requestUrl = 'http://localhost:3000/api/v1.0/task/'+task.id;
+    this.http.put(requestUrl, task ,options)
+                    .subscribe(res => res.json());
+  }
+
   deleteTask(id) {
     let options = new RequestOptions({
       headers: new Headers({ 'Content-Type': 'application/json;charset=UTF-8' }) 
