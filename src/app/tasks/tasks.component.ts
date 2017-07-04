@@ -25,6 +25,8 @@ export class TasksComponent implements OnInit {
 
   rForm: FormGroup;
   post: any;
+  submitBtnText = 'Add New Task';
+  taskToEdit : any;
 
   ngOnInit() {
   }
@@ -36,7 +38,7 @@ export class TasksComponent implements OnInit {
           .subscribe(tasks => {
           this.tasks = tasks;
           });
-    }, 5000);
+    }, 1000);
 
     this.rForm = fb.group({
       'id': [null],
@@ -78,9 +80,18 @@ export class TasksComponent implements OnInit {
       priority: null,
       status: null
     };
+    this.rForm.reset();
+    this.submitBtnText = 'Add New Task';
   }
 
   deleteTask(id) {
     this.dataService.deleteTask(id);
+  }
+
+  editTask(id) {
+    this.taskToEdit = this.tasks.find(x => x.id == id);
+    this.task = this.taskToEdit;
+    this.rForm.setValue(this.taskToEdit);
+    this.submitBtnText = 'Update Task';
   }
 }

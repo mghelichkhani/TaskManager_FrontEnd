@@ -34,14 +34,14 @@
           </div>
         </td>
         <td>
-          <button type="submit" class="btn btn-success">Add Task</button>
+          <button type="submit" class="btn btn-success">{{ this.submitBtnText }}</button>
         </td>
       </tr>
     </tbody>
   </table>
 </form>
 
-<table class="table">
+<table class="table table-sm table-hover">
     <thead>
       <tr>
         <th>title</th>
@@ -56,7 +56,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let task of tasks">
+      <tr *ngFor="let task of tasks" (click)="editTask(task.id)">
         <td>{{ task.title }}</td>
         <td>{{ task.description }}</td>
         <td>{{ task.createdAt | amTimeAgo }}</td>
@@ -65,7 +65,11 @@
         <td>{{ task.resolvedAt }}</td>
         <td>{{ task.priority }}</td>
         <td>{{ task.status }}</td>
-        <td><button class="btn btn-danger" (click)="deleteTask(task.id)">Delete</button></td>
+        <td width="140">
+          <button class="btn btn-sm btn-danger" (click)="deleteTask(task.id)">
+            <span class="glyphicon glyphicon-trash"></span>
+          </button>
+        </td>
       </tr>      
     </tbody>
   </table>
